@@ -1,0 +1,36 @@
+
+config SPRD_CRYPTO
+	tristate "Spreadtrum Crypto Driver for verifying modem image"
+	depends on ARM64
+	default n
+	help
+	  spreadtrum crypto driver for verifying modem image.
+
+config SPRD_CRYPTO_TEST
+	tristate "The Testing option of Spreadtrum Crypto Driver for verifying modem image"
+	depends on ARM64
+	default n
+	help
+	  The Testing option of spreadtrum crypto driver for verifying modem image.
+
+config SPRD_CRYPTO_PERFORMANCE_TEST
+	tristate "The Performance Testing option of Spreadtrum Crypto Driver"
+	depends on SPRD_CRYPTO_TEST
+	default n
+	help
+	  The Testing option of spreadtrum crypto driver for verifying modem image.
+
+choice
+	prompt "SHA256 Algorithm selection"
+	depends on SPRD_CRYPTO
+	default n
+config SPRD_CRYPTO_HASH_AHASH
+	tristate "The AHASH Crypto option of Spreadtrum Crypto Driver"
+	help
+	  SHA256 by calling ahash API of kernel crypto module.
+
+config SPRD_CRYPTO_HASH_SW
+	tristate "The Soft Crypto option of Spreadtrum Crypto Driver"
+	help
+	  SHA256 by using software.
+endchoice
